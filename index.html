@@ -1,200 +1,123 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Piedra, Papel o Tijera — Interactivo</title>
-  <style>
-    :root{--bg:#0f1720;--card:#0b1220;--accent:#0ea5a4;--muted:#94a3b8;--white:#e6eef6}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
-         background:linear-gradient(180deg,#07102a 0%,#071126 60%);color:var(--white);
-         min-height:100vh;display:flex;justify-content:center;padding:12px}
-    .layout{display:grid;grid-template-columns:200px 1fr 200px;gap:16px;width:100%;max-width:1280px}
-    @media(max-width:900px){
-      .layout{grid-template-columns:1fr;grid-template-rows:auto 1fr auto}
-    }
-
-    .app{width:100%;max-width:880px;margin:0 auto}
-
-    /* banners */
-    aside.banner{background:rgba(255,255,255,0.05);border-radius:12px;
-                 display:flex;align-items:center;justify-content:center;
-                 font-size:0.9rem;color:var(--muted);padding:12px;text-align:center}
-    /* lateral rectangular (desktop) */
-    aside.banner{min-height:400px}
-    /* móvil: cuadrado */
-    @media(max-width:900px){
-      aside.banner{min-height:120px;min-width:120px;margin:8px auto}
-    }
-
-    header{display:flex;gap:12px;align-items:center;margin-bottom:20px;text-align:center}
-    h1{font-size:1.25rem;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:0.95rem}
-
-    .board{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media (max-width:700px){.board{grid-template-columns:1fr}}
-
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-          padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
-
-    .choices{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
-    .choice-btn{background:#031426;border:2px solid transparent;color:var(--white);padding:12px;
-                border-radius:10px;min-width:96px;cursor:pointer;display:flex;
-                flex-direction:column;align-items:center;gap:8px;font-weight:600}
-    .choice-btn[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 6px 18px rgba(14,165,164,0.12)}
-
-    .icon{width:64px;height:64px;display:block}
-    .result{font-size:1rem;margin-top:12px;text-align:center}
-
-    .machine-area{display:flex;flex-direction:column;align-items:center;gap:12px}
-    .machine-display{width:140px;height:140px;border-radius:12px;background:linear-gradient(180deg,#061223,#02101b);
-                     display:flex;align-items:center;justify-content:center}
-    .machine-display svg{width:96px;height:96px}
-
-    .controls{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
-    .btn{background:var(--accent);color:#042022;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-
-    .score{display:flex;gap:12px;justify-content:center;margin-top:8px;color:var(--muted)}
-    footer{margin-top:14px;color:var(--muted);font-size:0.85rem;text-align:center}
-  </style>
+  <title>Inicio — Piedra, Papel o Tijera</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="layout">
-    <!-- Banner lateral en desktop / arriba en móvil -->
-    <aside class="banner">Publicidad A</aside>
+  <header class="site-header" role="banner">
+    <nav role="navigation" aria-label="Main">
+      <ul class="menu">
+        <li><a href="index.html" aria-current="page">Inicio</a></li>
+        <li><a href="mas-juegos.html">Más Juegos</a></li>
+        <li><a href="mas-scripts.html">Más Scripts</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main class="app" id="app">
-      <header>
-        <div>
-          <h1>Piedra · Papel · Tijera (interactivo)</h1>
-          <p class="lead">Haz clic en una opción. La máquina "pensará" unos instantes y mostrará su jugada.</p>
-        </div>
-      </header>
+  <div class="layout" role="main" aria-label="Contenido principal">
+    <aside class="banner left-banner" aria-label="Publicidad lateral izquierda">Publicidad A</aside>
 
-      <section class="board">
-        <div class="card">
-          <h2 id="titulo-jugador">Tu elección</h2>
-          <div class="choices" role="radiogroup" aria-labelledby="titulo-jugador">
-            <button class="choice-btn" data-choice="piedra" aria-pressed="false">
-              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M12 30q2-14 14-18t22 6q8 8 6 20t-12 16q-10 4-20-2t-10-22z"/></svg>
-              <span>piedra</span>
+    <main class="main-area">
+      <section class="card hero">
+        <h1>Bienvenido — Minisitio de Juegos</h1>
+        <p>Juega, compite y guarda tus estadísticas. El diseño usa tarjetas 2×2 responsive (se apilan en móvil). Los anuncios aparecen lateral en desktop y arriba/abajo en móvil.</p>
+      </section>
+
+      <!-- cuadrícula 2x2 responsive -->
+      <section class="square-grid">
+        <!-- 1: Juego (Player) -->
+        <article class="card game-card" aria-labelledby="gameTitle">
+          <h2 id="gameTitle">Tu turno</h2>
+
+          <div class="player-display">
+            <div id="playerIcon" class="big-icon" aria-hidden="true">—</div>
+            <div class="player-label" id="playerLabel">Sin selección</div>
+          </div>
+
+          <div class="choices" role="radiogroup" aria-label="Opciones">
+            <button class="choice-btn" data-choice="piedra" aria-pressed="false" title="Piedra">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <path fill="currentColor" d="M12 30q2-14 14-18t22 6q8 8 6 20t-12 16q-10 4-20-2t-10-22z"/>
+              </svg>
+              <span class="vis">Piedra</span>
             </button>
-            <button class="choice-btn" data-choice="papel" aria-pressed="false">
-              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="8" width="36" height="48" rx="4" fill="currentColor"/></svg>
-              <span>papel</span>
+            <button class="choice-btn" data-choice="papel" aria-pressed="false" title="Papel">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="14" y="8" width="36" height="48" rx="4" fill="currentColor"/>
+              </svg>
+              <span class="vis">Papel</span>
             </button>
-            <button class="choice-btn" data-choice="tijera" aria-pressed="false">
-              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M20 20l24 24m0-24L20 44m-6-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm36 0a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
-              <span>tijera</span>
+            <button class="choice-btn" data-choice="tijera" aria-pressed="false" title="Tijera">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <path fill="currentColor" d="M20 20l24 24m0-24L20 44m-6-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm36 0a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
+              </svg>
+              <span class="vis">Tijera</span>
             </button>
           </div>
 
           <div class="controls">
             <button id="playBtn" class="btn" aria-disabled="true">Jugar</button>
-            <button id="resetBtn" class="btn secondary">Reset score</button>
+            <button id="autoBtn" class="btn secondary">Auto</button>
           </div>
 
-          <div class="score" aria-live="polite">
-            <div id="score-jugador">Tú: 0</div>
-            <div id="score-maquina">Máquina: 0</div>
+          <div class="small-actions">
+            <button id="clearSelection" class="btn secondary">Borrar selección</button>
+          </div>
+        </article>
+
+        <!-- 2: Máquina -->
+        <article class="card machine-card" aria-labelledby="machineTitle">
+          <h2 id="machineTitle">Máquina</h2>
+          <div class="machine-display" aria-live="polite">
+            <div id="machineIcon" class="big-icon" aria-hidden="true">—</div>
+            <div id="machineLabel" class="player-label">—</div>
           </div>
 
-          <div class="result" id="resultado" role="status" aria-live="polite">Elige una opción y presiona "Jugar"</div>
-        </div>
+          <div class="machine-note">La máquina pensará unos instantes al jugar.</div>
+        </article>
 
-        <div class="card machine-area">
-          <h2 id="titulo-maquina">Máquina</h2>
-          <div class="machine-display" aria-labelledby="titulo-maquina">
-            <div id="machineIcon" class="label">—</div>
+        <!-- 3: Estadísticas -->
+        <article class="card stats-card" aria-labelledby="statsTitle">
+          <h2 id="statsTitle">Estadísticas</h2>
+          <div class="stats-grid">
+            <div><strong id="stat-total">0</strong><div class="muted">Partidas</div></div>
+            <div><strong id="stat-win">0</strong><div class="muted">Victorias</div></div>
+            <div><strong id="stat-loss">0</strong><div class="muted">Derrotas</div></div>
+            <div><strong id="stat-draw">0</strong><div class="muted">Empates</div></div>
           </div>
-          <div style="color:var(--muted);font-size:0.9rem">La máquina mostrará animación antes de decidir</div>
 
-          <div style="margin-top:12px">
-            <button id="autoBtn" class="btn secondary">Jugar auto (random)</button>
+          <h3>Historial</h3>
+          <ul id="historyList" class="history"></ul>
+
+          <div class="controls" style="margin-top:10px">
+            <button id="clearStats" class="btn secondary">Limpiar estadísticas</button>
           </div>
-        </div>
+        </article>
+
+        <!-- 4: Cómo jugar / explicación -->
+        <article class="card info-card" aria-labelledby="infoTitle">
+          <h2 id="infoTitle">Cómo jugar</h2>
+          <ol>
+            <li>Elige Piedra, Papel o Tijera (clic o 1-2-3).</li>
+            <li>Pulsa <strong>Jugar</strong>. La máquina decidirá y saldrá el resultado.</li>
+            <li>Las estadísticas se guardan en tu navegador (y se mostrará el historial).</li>
+          </ol>
+          <p class="muted">Próximo: conectar estas estadísticas a un backend (MongoDB) para vistas globales.</p>
+        </article>
       </section>
-
-      <footer>Responsive • Accesible • Banners adaptables incluidos.</footer>
     </main>
 
-    <!-- Banner lateral en desktop / abajo en móvil -->
-    <aside class="banner">Publicidad B</aside>
+    <aside class="banner right-banner" aria-label="Publicidad lateral derecha">Publicidad B</aside>
   </div>
 
-  <script>
-    const opciones=["piedra","papel","tijera"];
-    const icons={
-      piedra:`<svg viewBox="0 0 64 64"><path fill="currentColor" d="M12 30q2-14 14-18t22 6q8 8 6 20t-12 16q-10 4-20-2t-10-22z"/></svg>`,
-      papel:`<svg viewBox="0 0 64 64"><rect x="14" y="8" width="36" height="48" rx="4" fill="currentColor"/></svg>`,
-      tijera:`<svg viewBox="0 0 64 64"><path fill="currentColor" d="M20 20l24 24m0-24L20 44m-6-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm36 0a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>`
-    };
+  <footer class="site-footer">© 2025 — Minisitio de juegos</footer>
 
-    function compare(j1,j2){
-      if(j1===j2)return"empate";
-      if((j1==="piedra"&&j2==="tijera")||(j1==="tijera"&&j2==="papel")||(j1==="papel"&&j2==="piedra"))return`gana ${j1}`;
-      return`gana ${j2}`;
-    }
-
-    let score={jugador:0,maquina:0};let eleccionJugador=null;
-    const choiceButtons=[...document.querySelectorAll('.choice-btn')],
-          playBtn=document.getElementById('playBtn'),
-          autoBtn=document.getElementById('autoBtn'),
-          resetBtn=document.getElementById('resetBtn'),
-          resultadoEl=document.getElementById('resultado'),
-          machineIcon=document.getElementById('machineIcon'),
-          scoreJugadorEl=document.getElementById('score-jugador'),
-          scoreMaquinaEl=document.getElementById('score-maquina');
-
-    function setSelected(choice){
-      eleccionJugador=choice;
-      choiceButtons.forEach(btn=>btn.setAttribute('aria-pressed',btn.dataset.choice===choice?'true':'false'));
-      playBtn.disabled=false;playBtn.removeAttribute('aria-disabled');
-    }
-
-    choiceButtons.forEach(btn=>btn.addEventListener('click',()=>setSelected(btn.dataset.choice)));
-
-    function animateMachine(duration=900){
-      const start=Date.now();let idx=0;
-      machineIcon.innerHTML='...';
-      const t=setInterval(()=>{
-        idx=(idx+1)%opciones.length;
-        machineIcon.innerHTML=icons[opciones[idx]];
-        if(Date.now()-start>=duration)clearInterval(t);
-      },120);
-      return new Promise(res=>setTimeout(res,duration));
-    }
-
-    function pickMachine(){return opciones[Math.floor(Math.random()*opciones.length)];}
-
-    async function playRound(playerChoice){
-      if(!playerChoice){resultadoEl.textContent='Selecciona una jugada primero.';return;}
-      playBtn.disabled=true;playBtn.setAttribute('aria-disabled','true');
-      await animateMachine();
-      const maquina=pickMachine();
-      machineIcon.innerHTML=icons[maquina];
-      const res=compare(playerChoice,maquina);
-      if(res==='empate')resultadoEl.textContent='Empate — nadie suma punto.';
-      else if(res.includes(playerChoice)){resultadoEl.textContent=`Has ganado: ${res}`;score.jugador++;}
-      else{resultadoEl.textContent=`Has perdido: ${res}`;score.maquina++;}
-      scoreJugadorEl.textContent=`Tú: ${score.jugador}`;
-      scoreMaquinaEl.textContent=`Máquina: ${score.maquina}`;
-      localStorage.setItem('rps-score',JSON.stringify(score));
-      playBtn.disabled=false;playBtn.removeAttribute('aria-disabled');
-    }
-
-    try{const saved=JSON.parse(localStorage.getItem('rps-score'));if(saved)score=saved;
-      scoreJugadorEl.textContent=`Tú: ${score.jugador}`;
-      scoreMaquinaEl.textContent=`Máquina: ${score.maquina}`;}catch(e){}
-
-    playBtn.addEventListener('click',()=>playRound(eleccionJugador));
-    autoBtn.addEventListener('click',()=>{const r=opciones[Math.floor(Math.random()*opciones.length)];
-      setSelected(r);playRound(r);});
-    resetBtn.addEventListener('click',()=>{score={jugador:0,maquina:0};localStorage.removeItem('rps-score');
-      scoreJugadorEl.textContent=`Tú: 0`;scoreMaquinaEl.textContent=`Máquina: 0`;
-      resultadoEl.textContent='Marcador reiniciado.';machineIcon.innerHTML='—';});
-  </script>
+  <script src="juego.js"></script>
 </body>
 </html>
+

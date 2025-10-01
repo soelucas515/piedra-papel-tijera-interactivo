@@ -1,0 +1,129 @@
+/* style.css */
+:root {
+  --bg:#0f1720;
+  --card:#0b1220;
+  --accent:#0ea5a4;
+  --muted:#94a3b8;
+  --white:#e6eef6;
+  --glass: rgba(255,255,255,0.03);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: var(--white);
+  background: linear-gradient(180deg,#07102a 0%,#071126 60%);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Header */
+.site-header { background: var(--card); padding:12px 8px; position:sticky; top:0; z-index:50; }
+.menu { list-style:none; display:flex; gap:14px; justify-content:center; margin:0; padding:0; }
+.menu a { color:var(--white); text-decoration:none; font-weight:600; padding:6px 8px; border-radius:6px; }
+.menu a[aria-current="page"] { color:var(--accent); }
+
+/* Layout grid with template-areas */
+.layout {
+  width:100%;
+  max-width:1200px;
+  margin:18px auto;
+  display:grid;
+  grid-template-columns:220px 1fr 220px;
+  gap:16px;
+  grid-template-areas: "left main right";
+  align-items:start;
+  padding:0 12px;
+}
+
+/* names for areas */
+.left-banner { grid-area:left; }
+.main-area { grid-area:main; }
+.right-banner { grid-area:right; }
+
+/* mobile: move banners top/bottom */
+@media (max-width:900px){
+  .layout {
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "left"
+      "main"
+      "right";
+  }
+  .left-banner { order: -1; /* visually first */ }
+  .right-banner { order: 1; }
+  .left-banner, .right-banner { min-height:120px; }
+}
+
+/* banners */
+aside.banner {
+  background: var(--glass);
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted); padding:12px; text-align:center;
+  min-height:220px;
+}
+
+/* main-area (centra y limita ancho interno) */
+.main-area {
+  max-width:940px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* cards */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:16px; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.45);
+}
+
+/* square 2x2 grid */
+.square-grid {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:16px;
+}
+@media (max-width:700px){
+  .square-grid { grid-template-columns: 1fr; }
+}
+
+/* player/machine visuals */
+.player-display, .machine-display {
+  display:flex; flex-direction:column; align-items:center; gap:8px; margin-bottom:12px;
+}
+.big-icon { width:96px; height:96px; display:flex; align-items:center; justify-content:center; font-size:28px; color:var(--accent); }
+.player-label { color:var(--muted); font-weight:600; }
+
+/* choices */
+.choices { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+.choice-btn {
+  background:#071627; border:2px solid transparent; color:var(--white);
+  padding:10px; border-radius:10px; min-width:86px; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+.choice-btn[aria-pressed="true"] { border-color:var(--accent); box-shadow:0 6px 20px rgba(14,165,164,0.12); transform:translateY(-3px); }
+
+/* icons inside buttons */
+.icon { width:44px; height:44px; display:block; }
+
+/* controls */
+.controls { display:flex; gap:8px; justify-content:center; margin-top:6px; }
+.btn {
+  background: var(--accent); color:#042022; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700;
+}
+.btn.secondary { background: transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
+
+/* stats */
+.stats-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:8px; text-align:center; margin-bottom:8px; }
+.muted { color:var(--muted); font-size:0.95rem; }
+.history { list-style:none; padding:0; margin:8px 0 0 0; max-height:160px; overflow:auto; font-size:0.92rem; }
+.history li { padding:6px 8px; border-radius:8px; background: rgba(255,255,255,0.01); margin-bottom:6px; }
+
+/* small helpers */
+.hero p { color:var(--muted); }
+.vis { position:absolute; left:-9999px; } /* for icons' text labels (screen readers) */
+
+.site-footer { padding:12px; text-align:center; color:var(--muted); margin-top:20px; }
